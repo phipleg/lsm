@@ -1,4 +1,8 @@
 #!/bin/bash
+
+# Stop on first error
+set -e
+
 cd data
 URL=http://people.eecs.berkeley.edu/~akar/lsm/shapenet_release.tar.gz
 CHECKSUM=61feff8480368e00eb928d4b10a40a40
@@ -24,6 +28,7 @@ wget $URL -O $FILE
 tar xvzf $FILE
 
 echo "Processing voxels"
+cd shapenet_release
 cd voxels
 for i in `ls *.tar.gz`
 do
