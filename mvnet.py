@@ -1,4 +1,6 @@
+from __future__ import print_function
 from utils import pretty_line
+import six
 
 
 class MVNet(object):
@@ -59,33 +61,33 @@ class MVNet(object):
 
     def print_net(self):
         if hasattr(self, 'im_net'):
-            print '\n'
+            print('\n')
             pretty_line('Image Encoder')
-            for k, v in sorted(self.im_net.iteritems()):
-                print k + '\t' + str(v.get_shape().as_list())
+            for k, v in sorted(six.iteritems(self.im_net)):
+                print(k + '\t' + str(v.get_shape().as_list()))
 
         if hasattr(self, 'grid_net'):
-            print '\n'
+            print('\n')
             pretty_line('Grid Net')
-            for k, v in sorted(self.grid_net.iteritems()):
-                print k + '\t' + str(v.get_shape().as_list())
+            for k, v in sorted(six.iteritems(self.grid_net)):
+                print(k + '\t' + str(v.get_shape().as_list()))
 
         if hasattr(self, 'depth_net'):
-            print '\n'
+            print('\n')
             pretty_line('Depth Net')
-            for k, v in sorted(self.depth_net.iteritems()):
-                print k + '\t' + str(v.get_shape().as_list())
+            for k, v in sorted(six.iteritems(self.depth_net)):
+                print(k + '\t' + str(v.get_shape().as_list()))
 
         if hasattr(self, 'encoder'):
-            print '\n'
+            print('\n')
             pretty_line('Encoder')
-            for k, v in sorted(self.encoder.iteritems()):
-                print k + '\t' + str(v.get_shape().as_list())
+            for k, v in sorted(six.iteritems(self.encoder)):
+                print(k + '\t' + str(v.get_shape().as_list()))
 
         if hasattr(self, 'decoder'):
-            print '\n'
+            print('\n')
             pretty_line('Decoder')
-            for k, v in sorted(self.decoder.iteritems()):
-                print k + '\t' + str(v.get_shape().as_list())
+            for k, v in sorted(six.iteritems(self.decoder)):
+                print(k + '\t' + str(v.get_shape().as_list()))
 
         return

@@ -92,7 +92,7 @@ def validate(args, checkpoint):
 
             l1_err.extend(batch_err)
             pbar.update(num_batch_items)
-    except Exception, e:
+    except Exception as e:
         logger.error(repr(e))
         dset.close_queue(e)
     finally:

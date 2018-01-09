@@ -1,3 +1,4 @@
+from __future__ import division
 import logging
 import tensorflow as tf
 
@@ -200,7 +201,7 @@ def model_dlsm(net,
             proj_vox_in,
             net.K,
             net.Rcam,
-            proj_size=net.im_h / proj_x,
+            proj_size=net.im_h // proj_x,
             samples=ray_samples)
 
         bs, im_bs, ks, im_sz1, im_sz2, fdim, _ = tf_static_shape(
@@ -241,7 +242,7 @@ def depth_net_x4_sepup(net, in_, im_skip):
             d_shape = tf_static_shape(d_f)
             im_shape = tf_static_shape(im_f)
             im_f = uncollapse_dims(im_f, net.batch_size, net.im_batch)
-            im_rep = repeat_tensor(im_f, d_shape[0] / im_shape[0], rep_dim=1)
+            im_rep = repeat_tensor(im_f, d_shape[0] // im_shape[0], rep_dim=1)
             im_rep = tf.reshape(im_rep, d_shape[:-1] + [im_shape[-1]])
             return tf.concat([im_rep, d_f], axis=-1)
 
@@ -278,7 +279,7 @@ def depth_net_x8_sepup(net, in_, im_skip):
             d_shape = tf_static_shape(d_f)
             im_shape = tf_static_shape(im_f)
             im_f = uncollapse_dims(im_f, net.batch_size, net.im_batch)
-            im_rep = repeat_tensor(im_f, d_shape[0] / im_shape[0], rep_dim=1)
+            im_rep = repeat_tensor(im_f, d_shape[0] // im_shape[0], rep_dim=1)
             im_rep = tf.reshape(im_rep, d_shape[:-1] + [im_shape[-1]])
             return tf.concat([im_rep, d_f], axis=-1)
 
@@ -319,7 +320,7 @@ def depth_net_x4(net, in_, im_skip):
             d_shape = tf_static_shape(d_f)
             im_shape = tf_static_shape(im_f)
             im_f = uncollapse_dims(im_f, net.batch_size, net.im_batch)
-            im_rep = repeat_tensor(im_f, d_shape[0] / im_shape[0], rep_dim=1)
+            im_rep = repeat_tensor(im_f, d_shape[0] // im_shape[0], rep_dim=1)
             im_rep = tf.reshape(im_rep, d_shape[:-1] + [im_shape[-1]])
             return tf.concat([im_rep, d_f], axis=-1)
 
@@ -359,7 +360,7 @@ def depth_net_x8(net, in_, im_skip):
             d_shape = tf_static_shape(d_f)
             im_shape = tf_static_shape(im_f)
             im_f = uncollapse_dims(im_f, net.batch_size, net.im_batch)
-            im_rep = repeat_tensor(im_f, d_shape[0] / im_shape[0], rep_dim=1)
+            im_rep = repeat_tensor(im_f, d_shape[0] // im_shape[0], rep_dim=1)
             im_rep = tf.reshape(im_rep, d_shape[:-1] + [im_shape[-1]])
             return tf.concat([im_rep, d_f], axis=-1)
 

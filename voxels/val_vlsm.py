@@ -105,7 +105,7 @@ def validate(args, checkpoint):
             # Update iou dict
             iou = update_iou(batch_iou, iou)
             pbar.update(num_batch_items)
-    except Exception, e:
+    except Exception as e:
         logger.error(repr(e))
         dset.close_queue(e)
     finally:

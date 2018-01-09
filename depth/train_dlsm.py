@@ -125,7 +125,7 @@ def train(net):
                 pbar.update(1)
                 if iters >= args.niters:
                     break
-        except Exception, e:
+        except Exception as e:
             logging.error(repr(e))
             dset.close_queue(e)
         finally:

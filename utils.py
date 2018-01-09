@@ -1,3 +1,4 @@
+from __future__ import print_function
 import errno
 import json
 import logging
@@ -62,7 +63,7 @@ def mkdir_p(path):
 
 
 def pretty_line(s):
-    print '*' * 5 + ' ' + s + ' ' + '*' * 5
+    print('*' * 5 + ' ' + s + ' ' + '*' * 5)
 
 
 def write_args(args, jsonfile):

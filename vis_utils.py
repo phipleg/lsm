@@ -1,3 +1,4 @@
+from __future__ import print_function
 import os
 
 import numpy as np
@@ -27,7 +28,7 @@ def plot_points(xyz,
     positions = xyz.reshape(-1).tolist()
     mkdir_p('vis')
     if html_out is None:
-        html_out = os.path.join('vis', 'pts{:s}.html'.format(uuid4()))
+        html_out = os.path.join('vis', 'pts{}.html'.format(uuid4()))
     if title is None:
         title = "PointCloud"
     camera_position = xyz.max(0) + abs(xyz.max(0))
@@ -253,6 +254,6 @@ def depth2mesh(classId,
                         obj.write('f {:d} {:d} {:d}\n'.format(
                             int(vxy), int(vx), int(vy)))
                     except:
-                        print 'Error', vxy, vx, vy
+                        print('Error', vxy, vx, vy)
                         return
     return out_f

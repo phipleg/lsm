@@ -1,7 +1,13 @@
 import json
 import logging
 import os.path as osp
-from Queue import Empty, Queue
+import sys
+import six
+is_py2 = sys.version[0] == '2'
+if is_py2:
+    from Queue import Empty, Queue
+else:
+    from queue import Empty, Queue
 from threading import Thread, current_thread
 
 import numpy as np
@@ -60,7 +66,7 @@ class ShapeNet(object):
 
     def get_smids(self, split):
         smids = []
-        for k, v in self.splits.iteritems():
+        for k, v in six.iteritems(self.splits):
             smids.extend([(k, m) for m in v[split]])
         smids = np.random.permutation(smids)
         return smids
