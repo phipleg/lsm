@@ -7,7 +7,7 @@ import numpy as np
 import tensorflow as tf
 from tqdm import tqdm
 
-from config import SHAPENET_IM, SHAPENET_VOX
+from config import SHAPENET_VOX
 from evaluate import eval_seq_iou, init_iou, print_iou_stats, update_iou
 from loader import pad_batch
 from models import grid_nets, im_nets, model_vlsm
@@ -47,7 +47,6 @@ def validate(args, checkpoint):
         mode="TEST",
         norm=args.norm)
 
-    im_dir = SHAPENET_IM
     vox_dir = SHAPENET_VOX[args.nvox]
 
     # Setup network
@@ -63,7 +62,6 @@ def validate(args, checkpoint):
 
     # Init dataset
     dset = ShapeNet(
-        im_dir=im_dir,
         split_file=args.val_split_file,
         vox_dir=vox_dir,
         rng_seed=1)

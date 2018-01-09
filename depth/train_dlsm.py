@@ -7,7 +7,6 @@ from pprint import pprint
 import tensorflow as tf
 from tqdm import tqdm
 
-from config import SHAPENET_IM
 from models import grid_nets, im_nets, model_dlsm
 from mvnet import MVNet
 from ops import (conv_rnns, depth_sum, image_sum, loss_l1, repeat_tensor,
@@ -55,7 +54,7 @@ def train(net):
 
     # Initialize dataset
     coord = tf.train.Coordinator()
-    dset = ShapeNet(im_dir=im_dir, split_file=args.split_file, rng_seed=0)
+    dset = ShapeNet(split_file=args.split_file, rng_seed=0)
     mids = dset.get_smids('train')
     logger.info('Training with %d models', len(mids))
     items = ['im', 'K', 'R', 'depth']
@@ -177,7 +176,6 @@ if __name__ == '__main__':
     key = time.strftime("%Y-%m-%d_%H%M%S")
     init_logging(args.loglevel)
     logger = logging.getLogger('mview3d.' + __name__)
-    im_dir = SHAPENET_IM
 
     if args.ckpt is None:
         log_dir = osp.join(args.logdir, key, 'train')

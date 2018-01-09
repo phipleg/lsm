@@ -7,7 +7,7 @@ from pprint import pprint
 import tensorflow as tf
 from tqdm import tqdm
 
-from config import SHAPENET_IM, SHAPENET_VOX
+from config import SHAPENET_VOX
 from models import grid_nets, im_nets, model_vlsm
 from mvnet import MVNet
 from ops import conv_rnns, image_sum, loss_ce, repeat_tensor, voxel_sum
@@ -47,7 +47,6 @@ def train(net):
     # Initialize dataset
     coord = tf.train.Coordinator()
     dset = ShapeNet(
-        im_dir=im_dir,
         split_file=args.split_file,
         rng_seed=args.rng_seed,
         vox_dir=vox_dir)
@@ -173,7 +172,6 @@ if __name__ == '__main__':
     init_logging(args.loglevel)
     logger = logging.getLogger('mview3d.' + __name__)
     vox_dir = SHAPENET_VOX[args.nvox]
-    im_dir = SHAPENET_IM
     if args.ckpt is None:
         log_dir = osp.join(args.logdir, key, 'train')
     else:

@@ -6,7 +6,7 @@ import numpy as np
 import tensorflow as tf
 from tqdm import tqdm
 
-from config import SHAPENET_IM, SHAPENET_VOX
+from config import SHAPENET_VOX
 from loader import pad_batch
 from models import grid_nets, im_nets, model_vlsm
 from mvnet import MVNet
@@ -28,7 +28,6 @@ def run(args):
         mode="TEST",
         norm=args.norm)
 
-    im_dir = SHAPENET_IM
     vox_dir = SHAPENET_VOX[args.nvox]
 
     # Setup network
@@ -46,7 +45,6 @@ def run(args):
 
     # Init dataset
     dset = ShapeNet(
-        im_dir=im_dir,
         split_file=args.test_split_file,
         vox_dir=vox_dir,
         rng_seed=1)

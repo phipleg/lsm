@@ -6,7 +6,6 @@ import numpy as np
 import tensorflow as tf
 from tqdm import tqdm
 
-from config import SHAPENET_IM
 from loader import pad_batch
 from models import grid_nets, im_nets, model_dlsm
 from mvnet import MVNet
@@ -42,7 +41,6 @@ def run(args):
         mode="TEST",
         norm=args.norm)
 
-    im_dir = SHAPENET_IM
     # Setup network
     net = model_dlsm(
         net,
@@ -63,7 +61,7 @@ def run(args):
     coord = tf.train.Coordinator()
 
     # Init dataset
-    dset = ShapeNet(im_dir=im_dir, split_file=args.test_split_file, rng_seed=1)
+    dset = ShapeNet(split_file=args.test_split_file, rng_seed=1)
     mids = dset.get_smids(args.split)
     logger.info('Testing {:d} models'.format(len(mids)))
     items = ['shape_id', 'model_id', 'im', 'K', 'R', 'depth', 'view_idx']
