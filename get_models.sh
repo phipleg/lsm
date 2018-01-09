@@ -1,4 +1,7 @@
 #!/bin/bash
+
+set -e
+
 URL=http://people.eecs.berkeley.edu/~akar/lsm/models_lsm_v1_small.tar.gz
 CHECKSUM=8955572bb300a52a8b0dcf78d7e47b19
 FILE=models_lsm_v1_small.tar.gz
